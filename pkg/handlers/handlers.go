@@ -35,3 +35,19 @@ func (repo *Repository) About(w http.ResponseWriter, r *http.Request) {
 
 	render.RenderTemplate(w, "about.page.tmpl", &models.TemplateData{StringMap: tmpmap})
 }
+
+func (repo *Repository) LuxuryRoom(w http.ResponseWriter, r *http.Request) {
+	render.RenderTemplate(w, "luxuryroom.page.tmpl", &models.TemplateData{})
+}
+
+func (repo *Repository) PresidentSuite(w http.ResponseWriter, r *http.Request) {
+	render.RenderTemplate(w, "presidentroom.page.tmpl", &models.TemplateData{})
+}
+
+func (repo *Repository) SearchAvailability(w http.ResponseWriter, r *http.Request) {
+	render.RenderTemplate(w, "search-availability.page.tmpl", &models.TemplateData{})
+}
+
+func (repo *Repository) Contact(w http.ResponseWriter, r *http.Request) {
+	render.RenderTemplate(w, "contact.page.tmpl", &models.TemplateData{})
+}
