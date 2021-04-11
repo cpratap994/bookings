@@ -1,6 +1,50 @@
 {{template "base" .}}
 
 {{ define "content" }}
-<h1>Search availability</h1>
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <h1 class="mt-4">Search for availability</h1>
+
+            <form action="reservation.html" method="GET" novalidate class="needs-validation">
+                <div class="row">
+                    <div class="col">
+                        <div id="foo" class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                    <input required class="form-control" type="text" name="start"
+                                        placeholder="Arrival Date">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group">
+                                    <input required class="form-control" type="text" name="end"
+                                        placeholder="Departure date">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+{{end}}
+
+{{define "js"}}
+<script>
+    const elem = document.getElementById('foo');
+        const rangepicker = new DateRangePicker(elem, {
+            // ...options
+        });
+</script>
 
 {{end}}
