@@ -7,9 +7,9 @@ import (
 	"time"
 
 	"github.com/alexedwards/scs/v2"
-	"github.com/cpratap994/bookings-learngo/pkg/config"
-	"github.com/cpratap994/bookings-learngo/pkg/handlers"
-	"github.com/cpratap994/bookings-learngo/pkg/render"
+	"github.com/cpratap994/bookings-learngo/internal/config"
+	"github.com/cpratap994/bookings-learngo/internal/handlers"
+	"github.com/cpratap994/bookings-learngo/internal/render"
 )
 
 const portNumber = ":8080"

@@ -3,8 +3,8 @@ package main
 import (
 	"net/http"
 
-	"github.com/cpratap994/bookings-learngo/pkg/config"
-	"github.com/cpratap994/bookings-learngo/pkg/handlers"
+	"github.com/cpratap994/bookings-learngo/internal/config"
+	"github.com/cpratap994/bookings-learngo/internal/handlers"
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
 )

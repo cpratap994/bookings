@@ -8,8 +8,8 @@ import (
 	"path/filepath"
 	"text/template"
 
-	"github.com/cpratap994/bookings-learngo/pkg/config"
-	"github.com/cpratap994/bookings-learngo/pkg/models"
+	"github.com/cpratap994/bookings-learngo/internal/config"
+	"github.com/cpratap994/bookings-learngo/internal/models"
 	"github.com/justinas/nosurf"
 )
 
