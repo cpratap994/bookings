@@ -5,31 +5,36 @@
 
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-          <img src="/static/images/presidentsuite.png" class="img-fluid img-thumbnail mx-auto d-block room-image">
-        </div>              
+            <img src="/static/images/presidentsuite.png" class="img-fluid img-thumbnail mx-auto d-block room-image">
+        </div>
     </div>
 
-  <div class="row">
-    <div class="col">
-      <h1 class="text-center mt-4">President Suite</h1>
-      <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like). </p>
+    <div class="row">
+        <div class="col">
+            <h1 class="text-center mt-4">President Suite</h1>
+            <p>It is a long established fact that a reader will be distracted by the readable content of a page when
+                looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution
+                of letters, as opposed to using 'Content here, content here', making it look like readable English. Many
+                desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a
+                search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have
+                evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like). </p>
+        </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="col text-center">
-        <a id="check-availability-btn" class="btn btn-success" href="#!">Check Availability</a>
+    <div class="row">
+        <div class="col text-center">
+            <a id="check-availability-btn" class="btn btn-success" href="#!">Check Availability</a>
+        </div>
     </div>
-  </div>
 </div>
 
 {{end}}
 
 {{ define "js"}}
 <script>
-document.getElementById("check-availability-btn").addEventListener("click", function(){
+    document.getElementById("check-availability-btn").addEventListener("click", function () {
 
-    let html = `
+        let html = `
         <form id="check-availability-form" action="" method="post" novalidate class="needs-validation">
             <div class="form-row">
                 <div class="col">
@@ -46,10 +51,36 @@ document.getElementById("check-availability-btn").addEventListener("click", func
             </div>
         </form>
         `;
+
         attention.custom({
             title: 'Choose your dates',
             msg: html,
+            willOpen: () => {
+                const elem = document.getElementById("reservation-dates-modal");
+                const rp = new DateRangePicker(elem, {
+                    format: 'yyyy-mm-dd',
+                    showOnFocus: true,
+                })
+            },
+
+            didOpen: () => {
+                document.getElementById("start").removeAttribute("disabled");
+                document.getElementById("end").removeAttribute("disabled");
+            },
+            
+            callback: function (results) {
+                let form = document.getElementById("check-availability-form");
+                let formData = new FormData(form);
+                formData.append("csrf_token", "{{.CSRFToken}}");
+
+                fetch('/search-availability-json', {
+                    method: "post",
+                    body: formData,
+                }).then(response => response.json()).then(data => {
+                    console.log(data);
+                });
+            }
         });
-})
+    })
 </script>
 {{end}}
