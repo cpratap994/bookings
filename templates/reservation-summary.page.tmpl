@@ -1,0 +1,7 @@
+{{template "base" .}}
+
+{{ define "content" }}
+<h1>Reservation summary page</h1>
+{{$res := index .Data "reservation"}}
+<h2>{{$res.FirstName}}</h2>
+{{end}}

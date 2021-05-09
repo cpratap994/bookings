@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/gob"
 	"fmt"
 	"log"
 	"net/http"
@@ -9,6 +10,7 @@ import (
 	"github.com/alexedwards/scs/v2"
 	"github.com/cpratap994/bookings-learngo/internal/config"
 	"github.com/cpratap994/bookings-learngo/internal/handlers"
+	"github.com/cpratap994/bookings-learngo/internal/models"
 	"github.com/cpratap994/bookings-learngo/internal/render"
 )
 
@@ -18,7 +20,8 @@ var app config.AppConfig
 var session *scs.SessionManager
 
 func main() {
-	//var app config.AppConfig
+	//Resgister Reservation to be used in session variable
+	gob.Register(models.Reservation{})
 
 	// change this to true when in production
 	app.InProduction = false
